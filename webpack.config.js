@@ -12,17 +12,19 @@ var config = {
         filename: 'bundle.js'
     },
     module: {
-        loaders: [{
+        rules: [{
             test: /\.js$/,
             exclude: /node_modules/,
-            loader: 'babel'
+            loader: 'babel-loader'
         }, {
             test: /\.css$/,
-            // style-loader(html에 style추가), css-loader(javascript내 import이용하여 css로드하여 class 사용), modules(css modules화 하여 다른 css에 영향 없도록)
-            loader: 'style-loader!css-loader?modules'
+            use: [
+                {loader: 'style-loader', options: {hmr: true, sourceMap: true}},// style-loader(html에 style추가)
+                {loader: 'css-loader', options: {modules: true, sourceMap: true}}// css-loader(javascript내 import이용하여 css로드하여 class 사용)
+            ]
         }]
     },
-    plugins:[
+    plugins: [
         new webpack.HotModuleReplacementPlugin(),
         // 기본 index.html template 지정, template loader(jade, ejs등)를 이용하여 html에 template적용 가능
         new HtmlWebpackPlugin({
@@ -32,7 +34,6 @@ var config = {
     devServer: {
         contentBase: __dirname + '/app',
         port: 80,
-        colors: true,
         historyApiFallback: true,
         inline: true,
         hot: true
