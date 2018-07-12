@@ -7,25 +7,13 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 var config = {
     mode: 'production',
     devtool: 'source-map',
-    entry: [
-        __dirname + '/app/index.js'
-    ],
-    output: {
-        path: __dirname + '/dist',
-        filename: 'bundle.js'
-    },
+    entry: [__dirname + '/app/index.js'],
+    output: {path: __dirname + '/dist', filename: 'bundle.js'},
     module: {
-        rules: [{
-            test: /\.js$/,
-            exclude: /node_modules/,
-            loader: 'babel-loader'
-        }, {
-            test: /\.css$/,
-            use: [
-                {loader: 'style-loader'},
-                {loader: 'css-loader', options: {modules: true}}
-            ]
-        }]
+        rules: [
+            {test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader'},
+            {test: /\.css$/, use: [{loader: 'style-loader'}, {loader: 'css-loader', options: {modules: true}}]}
+        ]
     },
     plugins: [
         new CleanWebpackPlugin(['dist']),

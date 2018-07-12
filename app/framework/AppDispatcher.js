@@ -1,11 +1,8 @@
-import ActionType from '../common/ActionType';
-
 /**
  * 액션을 실행시키기 위한 flux dispatcher
  */
 class AppDispatcher {
     constructor() {
-        this.ACTION_TYPE = ActionType; // 액션 타입 참조하도록 저장
     }
 
     setDispatch(dispatch) {

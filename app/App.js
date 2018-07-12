@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import LayerManager from './framework/LayerManager';
 import ComponentFactory from './components/ComponentFactory';
-import AppDispatcher from './framework/AppDispatcher';
 import Boot from './Boot';
 
 let bootFirst = true;
@@ -10,11 +8,10 @@ let bootFirst = true;
 class App extends Component {
     render() {
         if (bootFirst) {
-            AppDispatcher.setDispatch(this.props.dispatch);
+            new Boot(this.props.dispatch);
             bootFirst = false;
-            new Boot();
         }
-        let layers = LayerManager.getLayerAll().map((layer) => { // 레이어 가져옴
+        let layers = G.LayerManager.getLayerAll().map((layer) => { // 레이어 가져옴
             let popups;
             if (layer && layer.popups && layer.popups.length) {
                 popups = layer.popups.map((popup) => { // 팝업 가져옴

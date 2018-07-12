@@ -1,7 +1,6 @@
 import React from 'react';
 import Layer from '../../framework/components/Layer';
 import ShowwindowCtrl from "./ShowwindowCtrl";
-
 import styles from './Showwindow.css';
 
 export default class Showwindow extends Layer {

@@ -6,25 +6,14 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 var config = {
     mode: 'development',
     devtool: 'cheap-module-eval-source-map',// release시에는 보안으로 인해 source-map으로 해야 함
-    entry: [
-        __dirname + '/app/index.js'
-    ],
-    output: {
-        path: __dirname + '/dist',
-        filename: 'bundle.js'
-    },
+    entry: [__dirname + '/app/index.js'],
+    output: {path: __dirname + '/dist', filename: 'bundle.js'},
     module: {
-        rules: [{
-            test: /\.js$/,
-            exclude: /node_modules/,
-            loader: 'babel-loader'
-        }, {
-            test: /\.css$/,
-            use: [
-                {loader: 'style-loader'},// style-loader(html에 style추가)
-                {loader: 'css-loader', options: {modules: true}}// css-loader(javascript내 import이용하여 css로드하여 class 사용)
-            ]
-        }]
+        rules: [
+            {test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader'},
+            /* style-loader(html에 style추가)*/
+            /* css-loader(javascript내 import이용하여 css로드하여 class 사용)*/
+            {test: /\.css$/, use: [{loader: 'style-loader'}, {loader: 'css-loader', options: {modules: true}}]}]
     },
     plugins: [
         new CleanWebpackPlugin(['dist']),
