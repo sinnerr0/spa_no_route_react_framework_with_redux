@@ -6,24 +6,33 @@
 
 app  
 ├─api (Network ineterface module)  
-├─common (Defined flux action types and constants module)  
+├─common (Defined flux action types and constants module, utils)  
 ├─component (React components)  
-│  └─ComponentFactory.js  
+│  └─ComponentFactory.js (layer and popup components factory)
 ├─data (Something like immutable data)  
 ├─framework  
 │  ├─components (Inherited basic react component)  
-│  │  ├Layer.js  
-│  │  └Popup.js  
+│  │  ├GAnim.js  
+│  │  ├GAnimText.js  
+│  │  ├GCircle.js  
+│  │  ├GContainer.js  
+│  │  ├GImage.js  
+│  │  ├GLayer.js  
+│  │  ├GPopup.js  
+│  │  ├GRectangle.js  
+│  │  └GText.js  
 │  ├─AppDispatcher.js (React AppDispatcher)  
+│  ├─Components.js (framework components package)  
 │  ├─EventManager.js (User interface event manager)  
 │  ├─fetch.js (Interface for fetching resources (including across the network).)  
+│  ├─KeyDownRule.js (Rules on how to send key events)  
 │  ├─KeyEvent.js  
 │  ├─LayerManager.js (Manage layer and have layer data)  
 │  └─PopupManager.js (Manage popup and have popup data)  
-├─rule  
-│  └─KeyDownRule.js (Rules on how to send key events)  
-├─stores  
-│  └─LayerPopupStore.js (Rules on how to manage layer and popup)  
+├─reducers  
+│  ├─combineReducers.js
+│  └─layer.js (Rules on how to manage layer and popup)  
+├─App.js  
 ├─Boot.js (Initialization to configure your app)  
 ├─index.html  
 └─index.js (Bootstrap and overall app structure)  
