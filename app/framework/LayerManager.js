@@ -4,6 +4,7 @@
 class LayerManager {
     setStore(store) {
         this.store = store;
+        store.subscribe(this.updateStoreSate.bind(this));
     }
 
     updateStoreSate() {
@@ -20,12 +21,10 @@ class LayerManager {
     }
 
     getTopLayer() {
-        this.updateStoreSate();
         return this.storeSate.layer[this.storeSate.layer.length - 1];
     }
 
     getLayerAll() {
-        this.updateStoreSate();
         return this.storeSate.layer;
     }
 }

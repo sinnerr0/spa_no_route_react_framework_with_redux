@@ -1,3 +1,5 @@
+import KeyDownRule from './KeyDownRule';
+
 class EventManager {
 
     /**
@@ -8,6 +10,7 @@ class EventManager {
          * @type {object} 등록된 이벤트 리스트
          */
         this.eventList = {};
+        this.keyDownRule = new KeyDownRule();
         /**
          * @type {boolean} 키다운 룰에 맞는 등록된 모든 이벤트 리스트를 확인할 지 여부
          */
@@ -49,7 +52,7 @@ class EventManager {
             let listeners = this.eventList['keydown'];
             if (listeners && listeners.length) {
                 for (let i = listeners.length - 1; i >= 0; i--) {
-                    if (this.keyDownRuleObj.handleKeyDown(listeners[i])) {
+                    if (this.keyDownRule.handleKeyDown(listeners[i])) {
                         if (this.isCheckAllCondition) {
                             setTimeout(() => listeners[i].listener(e)); // 관련된 모든 핸들러에 이벤트 전파
                         } else {
@@ -60,10 +63,6 @@ class EventManager {
                 }
             }
         });
-    }
-
-    setKeydownRule(keyDownRuleObj) {
-        this.keyDownRuleObj = keyDownRuleObj;
     }
 }
 

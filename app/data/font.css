@@ -1,0 +1,19 @@
+@font-face {
+    font-family: HelveticaNeueLT;
+    src: url(font/HelveticaNeueLTStd-Md_1.otf);
+}
+
+@font-face {
+    font-family: RixHeadB;
+    src: url(font/RixHeadB_EU.ttf);
+}
+
+@font-face {
+    font-family: RixHeadL;
+    src: url(font/RixHeadL_EU.ttf);
+}
+
+@font-face {
+    font-family: RixHeadM;
+    src: url(font/RixHeadM_EU.ttf);
+}

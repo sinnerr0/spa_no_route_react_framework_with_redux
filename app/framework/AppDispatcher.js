@@ -5,8 +5,9 @@ class AppDispatcher {
     constructor() {
     }
 
-    setDispatch(dispatch) {
-        this.dispatch = dispatch;
+    setStore(store) {
+        this.store = store;
+        this.dispatch = store.dispatch;
     }
 
     dispatch(action = {}) {

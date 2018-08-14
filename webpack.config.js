@@ -11,16 +11,14 @@ var config = {
     module: {
         rules: [
             {test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader'},
-            /* style-loader(html에 style추가)*/
-            /* css-loader(javascript내 import이용하여 css로드하여 class 사용)*/
-            {test: /\.css$/, use: [{loader: 'style-loader'}, {loader: 'css-loader', options: {modules: true}}]}]
+        ]
     },
     plugins: [
         new CleanWebpackPlugin(['dist']),
-        new CopyWebpackPlugin([{from: 'app/data', to: 'data'}]),
-        new webpack.DefinePlugin({"process.env.NODE_ENV": JSON.stringify("development")}),
-        new webpack.HotModuleReplacementPlugin(),
-        new HtmlWebpackPlugin({template: __dirname + '/app/index.html', cache: true})// 기본 index.html template 지정, template loader(jade, ejs등)를 이용하여 html에 template적용 가능
+        new CopyWebpackPlugin([{from: '**/*', to: 'data', context: 'app/data'}]),
+        // 기본 index.html template 지정, template loader(jade, ejs등)를 이용하여 html에 template적용 가능
+        new HtmlWebpackPlugin({template: __dirname + '/app/index.html', cache: true}),
+        new webpack.HotModuleReplacementPlugin()
     ],
     devServer: {
         contentBase: __dirname + '/app',

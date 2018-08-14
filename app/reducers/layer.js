@@ -1,4 +1,4 @@
-import ActionType from '../common/ActionType';
+import ACTION_TYPE from '../common/ActionType';
 import update from 'immutability-helper'; // Note: update is a legacy react-addons-update. Use kolodny/immutability-helper instead.(https://github.com/kolodny/immutability-helper)
 /*
  immutability-helper usage:
@@ -20,11 +20,11 @@ export default function (state = [], action) {
         uniqueId = 0;
     }
     switch (action.type) {
-        case ActionType.PUSH_LAYER:
+        case ACTION_TYPE.PUSH_LAYER:
             let newState = update(state, {
                 $push: [{
                     id: uniqueId++,
-                    data: action.data,
+                    payload: action.payload,
                     isShow: true,
                     popups: []
                 }]
@@ -33,7 +33,7 @@ export default function (state = [], action) {
                 newState[newState.length - 2].isShow = false;
             }
             return newState;
-        case ActionType.POP_LAYER:
+        case ACTION_TYPE.POP_LAYER:
             if (state.length - 1) {
                 let newState = update(state, {
                     $splice: [[state.length - 1, 1]]
@@ -43,19 +43,19 @@ export default function (state = [], action) {
             } else {
                 return state;
             }
-        case ActionType.PUSH_POPUP:
+        case ACTION_TYPE.PUSH_POPUP:
             return update(state, {
                 [state.length - 1]: {
                     popups: {
                         $push: [{
                             id: uniqueId++,
-                            data: action.data,
+                            payload: action.payload,
                             isShow: true
                         }]
                     }
                 }
             });
-        case ActionType.POP_POPUP:
+        case ACTION_TYPE.POP_POPUP:
             return update(state, {
                 [state.length - 1]: {
                     popups: {

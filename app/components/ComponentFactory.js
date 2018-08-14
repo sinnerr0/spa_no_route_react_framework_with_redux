@@ -1,5 +1,5 @@
 import React from 'react';
-import Showwindow from './Showwindow/Showwindow';
+import Home from './home/Home';
 import DefaultPopup from './popup/DefaultPopup/DefaultPopup';
 
 class ComponentFactory {
@@ -8,7 +8,7 @@ class ComponentFactory {
      */
     constructor() {
         this.components = {
-            Showwindow, DefaultPopup,
+            Home, DefaultPopup,
         };
     }
 

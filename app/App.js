@@ -3,22 +3,20 @@ import {connect} from 'react-redux';
 import ComponentFactory from './components/ComponentFactory';
 import Boot from './Boot';
 
-let bootFirst = true;
-
 class App extends Component {
     render() {
-        if (bootFirst) {
-            new Boot(this.props.dispatch);
-            bootFirst = false;
+        if (!Boot.isFirst) {
+            Boot.isFirst = true;
+            Boot.start();
         }
         let layers = G.LayerManager.getLayerAll().map((layer) => { // 레이어 가져옴
             let popups;
             if (layer && layer.popups && layer.popups.length) {
                 popups = layer.popups.map((popup) => { // 팝업 가져옴
-                    return ComponentFactory.getComponent(popup.data.name, {key: popup.id, id: popup.id, isShow: popup.isShow});
+                    return ComponentFactory.getComponent(popup.payload.name, {key: popup.id, id: popup.id, isShow: popup.isShow});
                 });
             }
-            return ComponentFactory.getComponent(layer.data.name, {key: layer.id, id: layer.id, isShow: layer.isShow, children: popups});
+            return ComponentFactory.getComponent(layer.payload.name, {key: layer.id, id: layer.id, isShow: layer.isShow, children: popups});
         });
         return <div>{layers}</div>; // 화면에 출력
     }

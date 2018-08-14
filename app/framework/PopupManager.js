@@ -4,6 +4,7 @@
 class PopupManager {
     setStore(store) {
         this.store = store;
+        store.subscribe(this.updateStoreSate.bind(this));
     }
 
     updateStoreSate() {
@@ -21,12 +22,10 @@ class PopupManager {
     }
 
     getTopPopup() {
-        this.updateStoreSate();
         return this.popups[this.popups.length - 1];
     }
 
     getPopupAll() {
-        this.updateStoreSate();
         return this.popups;
     }
 }
